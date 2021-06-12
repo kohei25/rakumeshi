@@ -3,3 +3,4 @@
 data/.env
 data/__pycache__
 data/*.ipynb
+data/*.csv
