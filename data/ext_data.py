@@ -1,7 +1,6 @@
 import json
 import requests
 import pandas as pd
-import urllib.parse
 # config.py
 import config
 
@@ -14,9 +13,9 @@ while True:
 	query = {
 		'key': api_key,
 		'large_area': 'Z011', # 東京
-		'order': 1,
-		'start': i_start,
-		'count': 100,
+		'order': 1, #名前の順
+		'start': i_start, #検索結果の何番目から出力するか
+		'count': 100, #最大取得件数
 		'format': 'json'
 	}
 	url_base = 'http://webservice.recruit.co.jp/hotpepper/gourmet/v1/'
