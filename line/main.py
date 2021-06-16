@@ -1,6 +1,9 @@
-from logging import Handler
 import os
 from flask import Flask, request, abort
+
+from chat_template.scenario import (
+	chat_scenario
+)
 
 from linebot import (
 	LineBotApi, WebhookHandler
@@ -8,6 +11,7 @@ from linebot import (
 from linebot.exceptions import (
 	InvalidSignatureError
 )
+
 from linebot.models import (
 	MessageEvent, TextMessage, TextSendMessage
 )
@@ -29,7 +33,6 @@ def callback():
 
 	body = request.get_data(as_text=True)
 	app.logger.info('Request body: ' + body)
-	print('request ok')
 	try:
 		handler.handle(body, signature)
 	except InvalidSignatureError:
@@ -39,10 +42,8 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-	line_bot_api.reply_message(
-		event.reply_token,
-		TextSendMessage(text=event.message.text)
-	)
+	text = event.message.text
+	chat_scenario(line_bot_api, event, text)
 
 if __name__ == '__main__':
 	app.run()
