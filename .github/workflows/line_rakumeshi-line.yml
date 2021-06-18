@@ -24,6 +24,7 @@ jobs:
 
     - name: Create and start virtual environment
       run: |
+        cd line
         python -m venv venv
         source venv/bin/activate
 
@@ -37,8 +38,8 @@ jobs:
       with:
         name: python-app
         path: |
-          .
-          !venv/
+          ./line
+          !./line/venv/
 
   deploy:
     runs-on: ubuntu-latest
