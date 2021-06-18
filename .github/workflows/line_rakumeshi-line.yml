@@ -28,7 +28,7 @@ jobs:
         source venv/bin/activate
 
     - name: Install dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r line/requirements.txt
 
     # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -53,6 +53,9 @@ jobs:
         with:
           name: python-app
           path: .
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
