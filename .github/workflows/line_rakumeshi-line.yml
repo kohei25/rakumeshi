@@ -10,6 +10,9 @@ on:
       - line
   workflow_dispatch:
 
+env:
+  AZURE_WEBAPP_PACKAGE_PATH: '.'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -60,4 +63,4 @@ jobs:
           app-name: 'rakumeshi-line'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_e121fc21390445dabb54dcdd96bc7c01 }}
-          package: ${{ secrets.AzureAppService_PublishProfile_e121fc21390445dabb54dcdd96bc7c01 }}
+          package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
