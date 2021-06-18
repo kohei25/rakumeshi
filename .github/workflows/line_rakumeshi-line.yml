@@ -62,5 +62,5 @@ jobs:
         with:
           app-name: 'rakumeshi-line'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_e121fc21390445dabb54dcdd96bc7c01 }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
