@@ -54,13 +54,10 @@ jobs:
           name: python-app
           path: .
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'rakumeshi-line'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_3c987ed7e20e44cbaa7d9adee6081ed2 }}
-          package: .
+          package: '.'
