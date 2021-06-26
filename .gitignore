@@ -4,6 +4,6 @@ data/.env
 data/__pycache__
 data/*.ipynb
 data/*.csv
-data/Pipfile.lock
+
 line/.env
 line/*.lock
