@@ -28,7 +28,7 @@ jobs:
         source venv/bin/activate
 
     - name: Install dependencies
-      run: pip install -r line/requirements.txt
+      run: pip install -r requirements.txt
 
     # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
@@ -37,7 +37,7 @@ jobs:
       with:
         name: python-app
         path: |
-          ./line
+          .
           !venv/
 
   deploy:
@@ -59,4 +59,4 @@ jobs:
         with:
           app-name: 'rakumeshi'
           slot-name: 'production'
-          publish-profile: ${{ secrets.AzureAppService_PublishProfile_01bd3a1d504d467eb0957a617c949e12 }}
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_f655cd9ef4fc4f43951e2f263b6d54f0 }}
