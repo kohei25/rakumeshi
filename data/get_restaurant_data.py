@@ -59,7 +59,6 @@ def get_dataframe(count=100):
 	for large_service_area in large_service_areas:
 		shop_length = get_shop_length(large_service_area)
 		n = (shop_length - 1) // count + 1
-		n = 5
 		for i in range(n):
 			start = i * count + 1
 			content = get_responce(large_service_area, start, count).content
