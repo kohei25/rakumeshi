@@ -8,7 +8,7 @@ restaurant_data = get_dataframe()
 
 # Save dataframe as sqlite3
 
-# preprocess dataframe and make features matrix
+# preprocess DataFrame and make features matrix
 restaurant_features = preprocess(restaurant_data)
 
 # calculate similarity among restaurants and save it as sqlite3
