@@ -1,0 +1,2 @@
+- [Flask-SQLAlchemy](https://pypi.org/project/Flask-SQLAlchemy/)
+- [(Flask ofiicial)Flask-SQLAlchemy](https://flask.palletsprojects.com/en/2.0.x/patterns/sqlalchemy/)

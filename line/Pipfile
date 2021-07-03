@@ -4,11 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-line-bot-sdk = "==1.19.0"
-python-dotenv = "==0.17.1"
-Flask = "==2.0.1"
+line-bot-sdk = "*"
+python-dotenv = "*"
+Flask = "*"
+flask-sqlalchemy = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.8"

@@ -4,7 +4,7 @@ import sys
 
 sys.path.append('../')
 
-import config
+from .. import config
 
 api_key = config.HOTPEPPER_API_KEY
 
