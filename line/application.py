@@ -1,40 +1,40 @@
-# from line.database.models import ShopEvaluation, UserFeatures
-import os
 from flask import Flask, request, abort
 
-from .chat_template.scenario import (
-	chat_scenario
-)
-
+# LINE module
 from linebot import (
 	LineBotApi, WebhookHandler
 )
 from linebot.exceptions import (
 	InvalidSignatureError
 )
-
 from linebot.models import (
 	MessageEvent, TextMessage, TextSendMessage
 )
 
-from flask_sqlalchemy import SQLAlchemy
+from chat_template.scenario import (
+	chat_scenario
+)
 
-from .config import config
+# database
+from db.database import db_session, init_db
+
+# environment variables
+from config import config
 
 app = Flask(__name__)
+init_db()
 
-# DB setting
-# postgreSQL
-app.config['SQLALCHEMY_DATABASE_URI'] = config.POSTGRESQL_DB_URI
-db = SQLAlchemy(app)
-
-# from models import User, UserFeatures, ShopEvaluation
-
+# production environment
 # line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
 # handler = WebhookHandler(config.LINE_CHANNEL_SECRET)
 
+# dev environment
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN_DEV)
 handler = WebhookHandler(config.LINE_CHANNEL_SECRET_DEV)
+
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+	db_session.remove()
 
 @app.route('/')
 def hello():
@@ -59,6 +59,4 @@ def handle_message(event):
 	chat_scenario(line_bot_api, event, text)
 
 if __name__ == '__application__':
-	db.create_all()
 	app.run()
-
