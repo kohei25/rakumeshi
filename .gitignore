@@ -5,5 +5,5 @@ data/__pycache__
 data/*.ipynb
 data/*.csv
 
-line/.env
-line/*.lock
+**/.env
+**/.venv
