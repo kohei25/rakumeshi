@@ -1,4 +1,5 @@
 .vscode
+.flaskenv
 
 data/.env
 data/__pycache__
