@@ -13,8 +13,8 @@ from linebot.models.actions import (
 from .test_data import (
     test_data
 )
-from db.user_func import add_user
-from db.models import User
+# from db.user_func import add_user
+# from db.models import User
 
 def chat_scenario(line_bot_api, event):
     # userのidを取得
