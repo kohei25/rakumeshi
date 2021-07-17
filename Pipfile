@@ -8,10 +8,10 @@ line-bot-sdk = "*"
 flask-sqlalchemy = "*"
 python-dotenv = "*"
 flask = "*"
-psycopg2-binary = "*"
 jupyterlab = "*"
 requests = "*"
 pandas = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
