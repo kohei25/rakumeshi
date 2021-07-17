@@ -9,6 +9,9 @@ flask-sqlalchemy = "*"
 python-dotenv = "*"
 flask = "*"
 psycopg2-binary = "*"
+jupyterlab = "*"
+requests = "*"
+pandas = "*"
 
 [dev-packages]
 
