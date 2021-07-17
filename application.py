@@ -12,13 +12,13 @@ from line.chat_template.scenario import (
 )
 
 # database
-# from db.database import db_session, init_db
+from db.database import db_session, init_db
 
 # environment variables
 from config import config
 
 app = Flask(__name__)
-# init_db()
+init_db()
 
 # production environment
 line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
@@ -28,9 +28,9 @@ handler = WebhookHandler(config.LINE_CHANNEL_SECRET)
 # line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN_DEV)
 # handler = WebhookHandler(config.LINE_CHANNEL_SECRET_DEV)
 
-# @app.teardown_appcontext
-# def shutdown_session(exception=None):
-# 	db_session.remove()
+@app.teardown_appcontext
+def shutdown_session(exception=None):
+	db_session.remove()
 
 @app.route('/')
 def hello():
