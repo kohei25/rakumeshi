@@ -6,6 +6,7 @@ data/.env
 data/__pycache__
 data/*.ipynb
 data/*.csv
+data/Pipfile.lock
 
 **/.env
 **/.venv

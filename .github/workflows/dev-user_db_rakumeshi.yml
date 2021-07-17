@@ -60,3 +60,4 @@ jobs:
           app-name: 'rakumeshi'
           slot-name: 'production'
           publish-profile: ${{ secrets.AzureAppService_PublishProfile_663a5984c2fe4f56804e11e2069e5b86 }}
+
