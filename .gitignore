@@ -1,4 +1,6 @@
 .vscode
+.flaskenv
+Pipfile.lock
 
 data/.env
 data/__pycache__
@@ -6,5 +8,7 @@ data/*.ipynb
 data/*.csv
 data/Pipfile.lock
 
-line/.env
-line/*.lock
+**/.env
+**/.venv
+
+.**

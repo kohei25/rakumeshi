@@ -4,12 +4,16 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+line-bot-sdk = "*"
+flask-sqlalchemy = "*"
+python-dotenv = "*"
+flask = "*"
 jupyterlab = "*"
 requests = "*"
 pandas = "*"
-python-dotenv = {extras = ["cli"], version = "*"}
+psycopg2-binary = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "3.8"
