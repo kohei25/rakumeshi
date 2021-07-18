@@ -1,7 +1,6 @@
 from flask import Flask
 from line.line import Line
 from db.database import db_session, init_db # database
-from config import config # environment variable
 
 app = Flask(__name__)
 init_db()
