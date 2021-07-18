@@ -16,7 +16,7 @@ def hello():
 	return 'home'
 
 # LINE responce
-line = Line(app=app, accesss_token=config.LINE_CHANNEL_ACCESS_TOKEN, secret_key=config.LINE_CHANNEL_SECRET)
+line = Line(app)
 handler = line.handler
 
 @app.route('/callback', methods=['POST'])

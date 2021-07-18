@@ -8,12 +8,13 @@ from linebot import (
 from line.chat_template.scenario import (
 	chat_scenario
 ) 
+from config import config
 
 class Line(object):
-    def __init__(self, app, accesss_token, secret_key) -> None:
+    def __init__(self, app):
         self.app = app
-        self.line_bot_api = LineBotApi(accesss_token)
-        self.handler = WebhookHandler(secret_key)
+        self.line_bot_api = LineBotApi(config.LINE_CHANNEL_ACCESS_TOKEN)
+        self.handler = WebhookHandler(config.LINE_CHANNEL_SECRET)
     
     def callback(self):
         signature = request.headers['X-Line-Signature']
