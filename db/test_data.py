@@ -3,9 +3,9 @@ from faker.providers import bank
 import sqlite3
 import os
 
-restaurant_num = 20
-user_num = 1000
-evaluation_num = 100
+restaurant_num = 20 # レストランの数
+user_num = 1000 # ユーザーの数
+evaluation_num = 100 # 評価の数
 
 path = '../rakumeshi.db'
 if os.path.exists(path):
