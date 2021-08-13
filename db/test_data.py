@@ -48,10 +48,8 @@ import datetime
 for i in range(1, user_num):
     id = i
     sex = randrange(3)
-    genre = int(uniform(1, 15))
-    budget = int(uniform(1, 14))
-    while budget == 7:
-        budget = int(uniform(1, 14))
+    genre = int(uniform(1, 7))
+    budget = int(uniform(1, 3))
     created_at = int(datetime.datetime.now().timestamp())
     updated_at = int(datetime.datetime.now().timestamp())
     query = 'INSERT INTO user_features(user_id, sex, genre, budget, created_at, updated_at) VALUES ((SELECT id FROM users WHERE id = ?), ?, ?, ?, ?, ?)'
