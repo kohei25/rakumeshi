@@ -7,6 +7,7 @@ CREATE TABLE user_features (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER,
     sex INTEGER,
+    age INTEGER,
     genre INTEGER,
     budget INTEGER,
     created_at INTEGER NOT NULL,

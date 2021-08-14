@@ -48,12 +48,13 @@ import datetime
 for i in range(1, user_num):
     id = i
     sex = randrange(3)
+    age = int(uniform(1, 6))
     genre = int(uniform(1, 7))
     budget = int(uniform(1, 3))
     created_at = int(datetime.datetime.now().timestamp())
     updated_at = int(datetime.datetime.now().timestamp())
-    query = 'INSERT INTO user_features(user_id, sex, genre, budget, created_at, updated_at) VALUES ((SELECT id FROM users WHERE id = ?), ?, ?, ?, ?, ?)'
-    args = [id, sex, genre, budget, created_at, updated_at]
+    query = 'INSERT INTO user_features(user_id, sex, age, genre, budget, created_at, updated_at) VALUES ((SELECT id FROM users WHERE id = ?), ?, ?, ?, ?, ?, ?)'
+    args = [id, sex, age, genre, budget, created_at, updated_at]
     cur.execute(query, args)
     con.commit()
 
@@ -70,7 +71,7 @@ for i in range(0, evaluation_num):
     restraunt_id = randrange(restaurant_num)
     evaluation = randrange(6)
     created_at = int(datetime.datetime.now().timestamp())
-    query = 'INSERT INTO shop_evaluation(user_id, restraunt_id, evaluation, created_at) VALUES ((SELECT id FROM users WHERE id = ?), (SELECT id FROM restaurants WHERE id = ?), ?, ?)'
+    query = 'INSERT INTO shop_evaluation(user_id, restraunt_id, rating, created_at) VALUES ((SELECT id FROM users WHERE id = ?), (SELECT id FROM restaurants WHERE id = ?), ?, ?)'
     args = [user_id, restraunt_id, evaluation, created_at]
     cur.execute(query, args)
     con.commit()
