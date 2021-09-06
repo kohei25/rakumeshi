@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>好み登録｜ラクメシ</title>
+</head>
+<body>
+    <form action='/register_favorite' method='POST'>
+        <h2>性別</h2>
+        <input type='radio' name='gender' value='men'>男性<br>
+        <input type='radio' name='gender' value='women'>女性<br>
+        <input type='radio' name='gender' value='other'>その他<br>
+    
+        <h2>年齢</h2>
+        <input type='radio' name='age' value='teenager'>〜10代<br>
+        <input type='radio' name='age' value='twenty'>20代<br>
+        <input type='radio' name='age' value='thirty'>30代<br>
+        <input type='radio' name='age' value='forty'>40代<br>
+        <input type='radio' name='age' value='fifty'>50代<br>
+        <input type='radio' name='age' value='sixty'>60代〜<br>
+    
+        <h2>好み</h2>
+        <input type='radio' name='taste' value='plain'>あっさり・さっぱり系<br>
+        <input type='radio' name='taste' value='hot'>スパイシー・辛い系<br>
+        <input type='radio' name='taste' value='strong'>こってり系<br>
+        <input type='radio' name='taste' value='sweet'>甘い系<br>
+    
+        <h2>予算</h2>
+        <input type='radio' name='budget' value='cheap'>もちろん安さ重視<br>
+        <input type='radio' name='budget' value='middle'>コスパが大事でしょ<br>
+        <input type='radio' name='budget' value='expensive'>美味しさ重視<br>
+    
+        <input type='submit' value='SUBMIT'>
+    </form>
+
+    <script type="text/javascript" src="js/liff.js"></script>
+</body>
+</html>
