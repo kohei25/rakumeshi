@@ -6,6 +6,7 @@
 - [DBeaver](https://dbeaver.io)にてデータを確認するには，Dbeaverにて　Database > New Database connection > SQLite > Main > Browseにてrakumeshi.dbを選択
 - DBeaverのDatabase Navigatorにてrakumeshi.db > TablesにてTable(restaurants,, shop_evaluation, user_features, users)を選択しDataにてデータを確認
 - dbからのデータを取ってくる．table_nameにてtable名をにゅうりょくする
+
 ```
 import sqlite3
 
@@ -42,30 +43,28 @@ butget...[下記](#budget)を参考, 1-3
 |-------------	|-------------	|-------------	|------------	|--------------------	|
 | [PK]integer 	| [FK]integer 	| [FK]integer 	| integer    	| integer(unix time) 	|
 
-### age
-| integer | age      |
-| ------- | -------- |
-| 1       | 10代     |
-| 2       | 20代     |
-| 3       | 30代     |
-| 4       | 40代     |
-| 5       | 50代     |
-| 6       | 60代以上 |
 
-### genre
-| integer | genre                |
-| ------- | -------------------- |
-| 1       | 和食                 |
-| 2       | 中華                 |
-| 3       | フレンチ・イタリアン |
-| 4       | アジア・エスニック   |
-| 5       | ロシア               |
-| 6       | 洋食                 |
-| 7       | その他               |
 
-### budget
-| integer | budget                    |
-| ------- | ------------------------- |
-| 1       | 安さ重視　（~ 2000）      |
-| 2       | コスパ重視（2000 ~ 5000） |
-| 3       | 味重視　　（5000 ~ ）     |
+## 性別
+||男性|
+||女性|
+||その他|
+
+## 年齢
+||〜10代|
+||20代|
+||30代|
+||40代|
+||50代|
+||60代〜|
+
+## 好み
+||あっさり・さっぱり系|
+||スパイシー・辛い系|
+||こってり系|
+||甘い系|
+
+## 予算
+||もちろん安さ重視|
+||コスパが大事でしょ|
+||美味しさ重視|
