@@ -8,7 +8,7 @@ from .message_tpl import (
     carousel_columns, carousel_template_message, confirm_tpl, button_tpl, loc_tpl
 )
 from .message_content import (
-    first_rep, liff_rep, sex_rep, age_rep, genre_rep, budget_rep, register_finish_rep
+    first_rep
 )
 from linebot.models.actions import (
     PostbackAction
@@ -26,7 +26,6 @@ def chat_scenario(line_bot_api, event):
         # add_user(line_id)
     # user_id = User.query.filter_by(line_id=line_id).first().id
     e_type = event.type
-    print(event)
     if e_type == 'message':
         text = event.message.text
         if text == 'ラクメシ':
@@ -39,7 +38,7 @@ def chat_scenario(line_bot_api, event):
                 TextSendMessage(
                     text=''
                 )
-            ) 
+            )
             return
         elif 'lat' in postback:
             name = re.findall('name=(.*)&a',postback)[0]
