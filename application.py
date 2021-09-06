@@ -7,14 +7,6 @@ import sqlite3
 
 
 app = Flask(__name__)
-# sqlite = Sqlite(g, app)
-# sqlite.init_db()
-
-# @app.teardown_appcontext
-# def close_connection(exception):
-#     db = getattr(g, '_database', None)
-#     if db is not None:
-#         db.close()
 
 # sever active check
 @app.route('/')
