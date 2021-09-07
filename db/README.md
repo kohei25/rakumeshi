@@ -1,5 +1,5 @@
 ## test dataの作成方法
-- [ここ](https://drive.google.com/file/d/10agQ9PDYR7Ykm-od3jwGh-s8topg9j-Z/view)からrestaurants.csvをダウンロードし，rakumeshi/dbに配置する
+- restaurants.csvをダウンロードし，rakumeshi/dbに配置する
 - rakumeshi/db　に移動
 - test_data.pyの各パラメータ(restaurant_num, user_num, evaluation_num)を適当な値に設定する
 - ```python test_data.py```を実行
