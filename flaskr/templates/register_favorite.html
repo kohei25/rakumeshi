@@ -4,13 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <!-- <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}"> -->
     <title>好み登録｜ラクメシ</title>
 </head>
 <body>
     <button id='liffLoginButton'>Login</button>
-    <button id='sendMessageButton'>send</button>
-    <button id='openWindowButton'>sakurazaka</button>
     <div id='userIdProfileField'></div>
     <form action='/register_favorite' method='POST'>
         <h2>性別</h2>
@@ -42,6 +40,6 @@
     </form>
     <p id='line'></p>
     <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
-    <script type="text/javascript" src='static/js/register.js'></script>
+    <script src='static/js/register.js'></script>
 </body>
 </html>

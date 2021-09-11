@@ -6,10 +6,53 @@
     <title>キーワード検索｜ラクメシ</title>
 </head>
 <body>
-    <form action='/keyword' method='post'>
-        <input type='search' id='search' name='keyword'>
+    <form action='/input_keyword' method='POST'>
+        <input type='search' id='keyword' name='keyword'>
+
+        <p>予算</p>
+        <select name='min_budget' size='1'>
+            <option value='1000'>1000</option>
+            <option value='2000'>2000</option>
+            <option value='3000'>3000</option>
+            <option value='4000'>4000</option>
+            <option value='5000'>5000~</option>
+        </select>
+
+        <select name='max_budget' size='1'>
+            <option value='1000'>1000</option>
+            <option value='2000'>2000</option>
+            <option value='3000'>3000</option>
+            <option value='4000'>4000</option>
+            <option value='5000'>5000</option>
+        </select>
+
+        <p>形式</p>
+        <input type='checkbox' name='style' value='free_drink'>飲み放題
+        <input type='checkbox' name='style' value='free_food'>食べ放題
+        <input type='checkbox' name='style' value='course'>コースあり
+        <input type='checkbox' name='style' value='lunch'>ランチあり
+
+        <p>座席</p>
+        <input type='checkbox' name='seat' value='private'>個室あり
+        <input type='checkbox' name='seat' value='horigotatsu'>掘りごたつあり
+        <input type='checkbox' name='seat' value='tatami'>座敷あり
+        <input type='checkbox' name='seat' value='terrace'>テラス席あり
+
+        <p>お酒</p>
+        <input type='checkbox' name='alchool' value='shochu'>焼酎充実
+        <input type='checkbox' name='alchool' value='sake'>日本酒充実
+        <input type='checkbox' name='alchool' value='wine'>ワイン充実
+        <input type='checkbox' name='alchool' value='cocktail'>カクテルあり
+        <input type='checkbox' name='alchool' value='sommelier'>ソムリエがいる
+
+        <p>設備</p>
+        <input type='checkbox' name='facility' value='wifi'>WI-FIあり
+        <input type='checkbox' name='facility' value='parking'>駐車場あり
+
+        <input type='hidden' name='userid' id='userid' value=''>
         <input type='submit' value='SUBMIT'>
     </form>
-    <script type="text/javascript" src="js/liff.js"></script>
+    <script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+    <script type="text/javascript" src='static/js/keyword.js'></script>
 </body>
-</html>8
+</html>

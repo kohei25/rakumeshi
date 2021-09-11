@@ -1,4 +1,6 @@
 window.onload = function(){
-    const myLiffId = "1656378583-rLZqp0ma";
-    initializeLiffOrDie(myLiffId);
+    // closeWindow call
+    document.getElementById('closeWindowButton').addEventListener('click', function() {
+        liff.closeWindow();
+    });
 }
