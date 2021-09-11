@@ -14,5 +14,7 @@ class UserFeature(db.Model):
 
 class Keyword(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    # user_id = db.Column(db.ForeignKey(User.id), nullable=False)
+    user_id = db.Column(db.ForeignKey(User.id), nullable=False)
     keyword = db.Column(db.String)
+
+    user = db.relationship(User, lazy='joined', backref='keywords')

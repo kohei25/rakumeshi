@@ -49,14 +49,18 @@ def register_features():
 
 @bp.route('/input_keyword', methods=('GET', 'POST'))
 def register_keyword():
-    if request == 'POST':
+    if request.method == 'POST':
         keywords = request.form['keyword']
+        line_id = request.form['userid']
+        user = get_user(line_id)
+        print(f'user: {user}, keywords: {keywords}')
         error = None
 
         if error is not None:
             flash(error)
         else:
-            db.session.add(Keyword(keyword=keywords))
-        return render_template('thankyou.html')
+            db.session.add(Keyword(keyword=keywords, user=user))
+            db.session.commit()
+            return render_template('thankyou.html')
     
     return render_template('input_keyword.html')
