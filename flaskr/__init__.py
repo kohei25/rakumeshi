@@ -1,7 +1,7 @@
 import os
 
 import click
-from flask import Flask
+from flask import Flask, send_from_directory
 from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
 
@@ -36,9 +36,9 @@ def create_app(test_config=None):
     app.register_blueprint(linebot.bp)
     app.register_blueprint(liff.bp)
 
-    # @app.route('/favicon.ico')
-    # def favicon():
-    #     return app.send_static_file('favicon.ico')
+    @app.route('/favicon.ico')
+    def favicon():
+        return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
     return app
 
