@@ -17,7 +17,7 @@ def get_binary_vector(data):
     #convert data into binary vector through pandas dataframe
     dfm = pd.DataFrame(data).T.set_axis(['age', 'budget', 'sex', 'genre'], axis=1)
     sex_categories = {0, 1, 2}
-    genre_categories = {1, 2, 3, 4, 5, 6, 7}
+    genre_categories = {0, 1, 2, 3}
     dfm['sex'] = pd.Categorical(dfm['sex'], categories=sex_categories)
     dfm['genre'] = pd.Categorical(dfm['genre'], categories=genre_categories)
     binary_vector = pd.get_dummies(dfm, columns=['sex', 'genre']).values
