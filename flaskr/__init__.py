@@ -43,7 +43,8 @@ def create_app(test_config=None):
     return app
 
 def init_db():
-    db.drop_all()
+    if db:
+        db.drop_all()
     db.create_all()
 
 
