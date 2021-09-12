@@ -13,16 +13,14 @@ from linebot.models.actions import (
 from .test_data import (
     test_data
 )
-from db.user_func import add_user
-from db.models import User
 
 def chat_scenario(line_bot_api, event):
     # userのidを取得
     line_id = event.source.user_id
-    user = User.query.filter_by(line_id=line_id).first()
-    if user == None:
-        add_user(line_id)
-    user_id = User.query.filter_by(line_id=line_id).first().id
+    # user = User.query.filter_by(line_id=line_id).first()
+    # if user == None:
+        # add_user(line_id)
+    # user_id = User.query.filter_by(line_id=line_id).first().id
     e_type = event.type
     if e_type == 'message':
         text = event.message.text
