@@ -19,11 +19,12 @@ def get_user(lineid):
 
 @bp.route('/')
 def home():
-    return render_template('thankyou.html')
+    return render_template('index.html')
+    # return render_template('thankyou.html')
 
 @bp.route('/liff_index')
 def liff_index():
-    return render_template('index.html')
+    return render_template('liff.html')
 
 @bp.route('/register_favorite', methods=('GET', 'POST'))
 def register_features():
@@ -52,10 +53,12 @@ def register_keyword():
     if request.method == 'POST':
         keywords = request.form['keyword']
         line_id = request.form['userid']
+        styles = request.form.getlist('style')
+        seats = request.form.getlist('seat')
+        alchools = request.form.getlist('alchool')
+        facilities = request.form.getlist('facility')
         user = get_user(line_id)
-        print(f'user: {user}, keywords: {keywords}')
         error = None
-
         if error is not None:
             flash(error)
         else:
