@@ -14,7 +14,7 @@ def first_rep(line_bot_api, event):
     buttons = [
         URIAction(
             label='キーワードからお店を探す',
-            uri='https://liff.line.me/1656378583-Ke1mWeD9'
+            uri='https://liff.line.me/1656415685-LMqGlmoG'
         ),
         PostbackAction(
             label='現在地からお店を探す',
@@ -22,11 +22,11 @@ def first_rep(line_bot_api, event):
         ),
         URIAction(
             label='好みを登録する',
-            uri='https://liff.line.me/1656378583-rLZqp0ma'
+            uri='https://liff.line.me/1656415685-8wdgk5Pg'
         ),
         URIAction(
             label='テスト',
-            uri='https://liff.line.me/1656378583-0yX2QVAP'
+            uri='https://liff.line.me/1656415685-jEEXwqOX'
         )
     ]
     line_bot_api.reply_message(
