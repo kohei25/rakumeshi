@@ -35,8 +35,6 @@ def register_features():
         budget= request.form['budget']
         line_id = request.form['userid']
         user = get_user(line_id)
-        print(f'line_id: {line_id}')
-        # user = get_user(line_id)
         error = None
 
         if error is not None:
@@ -57,6 +55,11 @@ def register_keyword():
         seats = request.form.getlist('seat')
         alchools = request.form.getlist('alchool')
         facilities = request.form.getlist('facility')
+        '''
+        recommendation function
+        input -> styles(list), seats(list), alchools(list), facilities(list), keyword(free keyword)
+        output -> three restaurants data(dict)
+        '''
         user = get_user(line_id)
         error = None
         if error is not None:
