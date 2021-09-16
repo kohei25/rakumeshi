@@ -5,10 +5,8 @@ from linebot.exceptions import (
 from linebot import (
 	LineBotApi, WebhookHandler
 )
-from line.chat_template.scenario import (
-	chat_scenario
-) 
-from config import config
+from .chat.scenario import chat_scenario
+from flaskr.config import config
 
 class Line(object):
     def __init__(self, app):
@@ -19,7 +17,7 @@ class Line(object):
     def callback(self):
         signature = request.headers['X-Line-Signature']
         body = request.get_data(as_text=True)
-        self.app.logger.info('Request body: ' + body)
+        # self.app.logger.info('Request body: ' + body)
         try:
             self.handler.handle(body, signature)
         except InvalidSignatureError:

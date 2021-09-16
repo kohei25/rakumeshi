@@ -1,2 +1,9 @@
 .**
+**.egg-info
+dist
+build
+instance
 Pipfile.lock
+
+
+__pycache__ 

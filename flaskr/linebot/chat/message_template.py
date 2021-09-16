@@ -1,11 +1,21 @@
 from linebot.models.messages import Message
+from linebot.models.actions import (
+    URIAction, PostbackAction, MessageAction
+)
 from linebot.models.send_messages import LocationSendMessage
 from linebot.models.template import (
     TemplateSendMessage, CarouselTemplate, CarouselColumn, ConfirmTemplate, ButtonsTemplate
 )
-from linebot.models.actions import (
-    MessageAction, URIAction, PostbackAction
-)
+
+def button_tpl(title, text, buttons):
+    return TemplateSendMessage(
+        alt_text='Buttons template',
+        template=ButtonsTemplate(
+            title=title,
+            text=text,
+            actions=buttons
+        )
+    )
 
 def carousel_columns(test_data):
     car_columns = []
@@ -52,17 +62,6 @@ def confirm_tpl():
                     text='最初から選択しなおす',
                 )
             ]
-        )
-    )
-
-def button_tpl(buttons):
-    return TemplateSendMessage(
-        alt_text='Buttons template',
-        template=ButtonsTemplate(
-            # thumbnail_image_url='https://example.com/image.jpg',
-            title='ラクメシです！',
-            text='なにをしますか？',
-            actions=buttons
         )
     )
 
