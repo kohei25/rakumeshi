@@ -11,6 +11,7 @@ setup(
         'Flask-SQLAlchemy',
         'line-bot-sdk',
         'python-dotenv',
-        'psycopg2-binary'
+        'psycopg2-binary',
+        'pymysql'
     ],
 )

@@ -16,7 +16,7 @@ class UserFeature(db.Model):
 class Keyword(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.ForeignKey(User.id), nullable=False)
-    keyword = db.Column(db.String)
+    keyword = db.Column(db.String(100))
     created_at = db.Column(db.DateTime, nullable=False, server_default=db.func.current_timestamp())
 
     user = db.relationship(User, lazy='joined', backref='keywords')
