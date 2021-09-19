@@ -4,6 +4,7 @@ dist
 build
 instance
 Pipfile.lock
+memo.txt
 
 
 __pycache__ 
