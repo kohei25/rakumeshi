@@ -7,14 +7,19 @@ from linebot.models.send_messages import StickerSendMessage
 from .message_template import (
     button_tpl
 )
+from flaskr.config import config
+# from flaskr.linebot.views import get_group_users
 
 def first_rep(line_bot_api, event):
+    url_starter = config.LIFFURL_STARTER
+    url_keyword = config.LIFFURL_KEYWORD
+    url_favorite = config.LIFFURL_FAVORITE
     title = 'こんにちは，ラクメシです🤡'
     text = 'なにをしますか？'
     buttons = [
         URIAction(
             label='キーワードからお店を探す',
-            uri='https://liff.line.me/1656415685-LMqGlmoG'
+            uri=url_keyword
         ),
         PostbackAction(
             label='現在地からお店を探す',
@@ -22,11 +27,11 @@ def first_rep(line_bot_api, event):
         ),
         URIAction(
             label='好みを登録する',
-            uri='https://liff.line.me/1656415685-8wdgk5Pg'
+            uri=url_favorite
         ),
         URIAction(
             label='テスト',
-            uri='https://liff.line.me/1656415685-jEEXwqOX'
+            uri=url_starter
         )
     ]
     line_bot_api.reply_message(
