@@ -5,7 +5,7 @@ window.onload = function() {
     let myLiffId = "";
 
     myLiffId = defaultLiffId;
-    initializeLiffOrDie(myLiffId);
+    initializeLiffOrDie(myLiffId)
 };
 
 /**
@@ -47,6 +47,7 @@ function initializeApp() {
 
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
+        location.replace('https://liff.line.me/1656441685-0MEzq1zq/register_favorite')
         document.getElementById('liffLoginButton').disabled = true;
         liff.getProfile().then(function(profile) {
             var lineId = profile.userId;
