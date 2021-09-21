@@ -5,7 +5,7 @@ from flaskr import db
 from flaskr.linebot.models import User
 from .models import UserFeature, Keyword
 
-bp = Blueprint('liff', __name__)
+bp = Blueprint('liff', __name__, url_prefix='/liff', static_folder='static')
 
 def get_user(lineid):
     user = User.query.filter_by(lineid=lineid).first()
@@ -18,7 +18,7 @@ def home():
 
 @bp.route('/liff_index')
 def liff_index():
-    return render_template('liff.html')
+    return render_template('rakumeshi/liff.html')
 
 @bp.route('/register_favorite', methods=('GET', 'POST'))
 def register_features():
@@ -37,10 +37,10 @@ def register_features():
             db.session.add(UserFeature(sex=int(sex), age=int(age), genre=int(genre), budget=int(budget), user=user))
             db.session.commit()
             return render_template('thankyou.html')
-    
+    print('register_features')
     return render_template('register_favorite.html')
 
-@bp.route('/input_keyword', methods=('GET', 'POST'))
+@bp.route('/rakumeshi/input_keyword', methods=('GET', 'POST'))
 def register_keyword():
     if request.method == 'POST':
         keywords = request.form['keyword']
