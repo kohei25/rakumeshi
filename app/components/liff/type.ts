@@ -12,12 +12,42 @@ export type TPreference = {
     budget: string | null
 }
 
-export type TAction = {type: "change", payload: [string, number]}
+export type TPreferenceAction = {type: "change", payload: [string, number]}
 
-export const preducer = (state: TPreference, action: TAction) => {
+export const preferenceReducer = (state: TPreference, action: TPreferenceAction) => {
     switch (action.type){
         case 'change':
-            console.log('payload', action.payload[0])
+            return {...state, [action.payload[0]]: action.payload[1]}
+    }
+}
+
+export type TCheckboxes = {
+    style: boolean[],
+    seat: boolean[],
+    alchool: boolean[],
+    facility: boolean[],
+}
+
+export type TCheckboxesAction = {type: 'change', payload: [string, boolean[]]}
+
+export const checkboxesReducer = (state: TCheckboxes, action: TCheckboxesAction) => {
+    switch (action.type){
+        case 'change':
+            return {...state, [action.payload[0]]: action.payload[1]}
+    }
+}
+
+export type TKeyword = {
+    min_budget: string | null,
+    max_budget: string | null,
+    keyword: string | null
+}
+
+export type TKeywordAction = {type: 'change', payload: [string, string]}
+
+export const keywordReducer = (state: TKeyword, action: TKeywordAction) => {
+    switch (action.type){
+        case 'change':
             return {...state, [action.payload[0]]: action.payload[1]}
     }
 }
@@ -162,7 +192,7 @@ export const style = [
 
 export const seat = [
     {
-        value: 'private',
+        value: 'private_room',
         label: '個室あり'
     },
     {
