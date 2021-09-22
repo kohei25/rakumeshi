@@ -30,8 +30,6 @@ class Line(object):
         return
 
     def scenario(self, event):
-        print(event)
-
         if event.message.text =="ラクメシ":
             e_source = event.source
             e_source_type = e_source.type
