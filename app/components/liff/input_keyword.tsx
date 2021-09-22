@@ -2,11 +2,13 @@ import { useEffect, useReducer, useState} from "react"
 import { getProfile, initializeLiffOrDie } from "./init"
 import SelectMenus from "../UIkit/SelectMenus"
 import Button from "../UIkit/Button"
-import {alchool, budget, checkboxesReducer, facility, keywordReducer, seat, style } from "./type"
+import {checkboxesReducer, keywordReducer, TDictLiffProfile, TLiffProfile} from "./type"
+import {alchool, budget, facility, seat, style} from './options'
 import { useRouter } from "next/router"
 import Spacer2 from "../layout/Spacer2"
 import CheckBoxes from "../UIkit/CheckBoxes"
 import Axios from 'axios'
+import liff from '@line/liff'
 
 
 const initialCheckboxes = {
@@ -24,15 +26,55 @@ const initialKeyword = {
 
 const input_keyword = () => {
     const router = useRouter()
+    const inputKeywordURL = process.env.NEXT_PUBLIC_API_URL + '/input_keyword'
 
     const [keyword, setKeyword] = useState('')
+    const [profile, setProfile] = useState<TLiffProfile | undefined>(undefined)
+
     const [checkboxes, cdispatch] = useReducer(checkboxesReducer, initialCheckboxes)
     const [keywords, kdispatch] = useReducer(keywordReducer, initialKeyword)
     
+    const initializeLiffOrDie = (myLiffId: string) => {
+        if(!myLiffId){
+        } else {
+            liff
+            .init({
+                liffId: myLiffId
+            })
+            .then(() => {
+                if (liff.isLoggedIn()){
+                    getProfile()
+                } else {
+                }
+            })
+            .catch((err: any) => {
+                console.log(err)
+            })
+        }
+    }
+
+    function getProfile(): [number, TDictLiffProfile]{
+        const responce: TDictLiffProfile = {}
+        liff.getProfile().then(function(profile: any) {
+            const responce: TDictLiffProfile = {}
+            responce[0] = {
+                userId: profile.userId,
+                displayName: profile.displayName,
+                pictureUrl: profile.pictureUrl, 
+                statusMessage: profile.statusMessage
+            }
+            setProfile(responce[0])
+            return [0, responce]
+        }).catch(function(error: any) {
+            window.alert('Error getting profile: ' + error);
+            return [1, responce]
+        });
+        return [2, responce]
+    }
+
     useEffect(() => {
         const myLiffId = '1656441685-0MEzq1zq'
-        // initializeLiffOrDie(myLiffId)
-        // const userId = getProfile()
+        initializeLiffOrDie(myLiffId)
     }, [])
 
     function handleChange(e: any){
@@ -41,19 +83,18 @@ const input_keyword = () => {
     }
 
     function handleSubmit(event: any){
-        // const iprofile = getProfile()
-        // console.log(iprofile
         event.preventDefault()
-        Axios.post('https://rakumeshi.loca.lt/api/input_keyword', {
+        Axios.post(inputKeywordURL, {
             checkboxes: checkboxes,
             keywords: keywords 
         }).then(function(res){
             if(res.status == 200){
                 console.log(res)
-                router.push('/liff/home')
+                router.push('/liff/back')
             }
         })
     }
+
     return (
         <div>
             <Spacer2 />
