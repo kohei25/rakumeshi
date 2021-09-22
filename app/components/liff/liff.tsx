@@ -2,11 +2,12 @@ import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Liff.module.css'
+// import styles from '../styles/Liff.module.css'
+import styles from '../../styles/Liff.module.css'
 import octcat from '../public/octcat.jpg'
 import liff from '@line/liff'
-import {initializeLiffOrDie, closeWindow, openWindow, sendMessage, getProfile} from './init'
-import {IProfile} from './type'
+import {closeWindow, openWindow, sendMessage} from './init'
+import { TDictLiffProfile, TLiffProfile } from './type'
 
 export default function Liff(){
     const [isOpen, setIsOpen] = useState({
@@ -21,18 +22,59 @@ export default function Liff(){
         liffInitErrorMessage: false
     })
     const [accessToken, setAccessToken] = useState<string | null>(null)
-    const [profile, setProfile] = useState<IProfile | undefined>(undefined)
+    const [profile, setProfile] = useState<TLiffProfile | undefined>(undefined)
+
+    const initializeLiffOrDie = (myLiffId: string) => {
+        if(!myLiffId){
+        } else {
+            liff
+            .init({
+                liffId: myLiffId
+            })
+            .then(() => {
+                if (liff.isLoggedIn()){
+                } else {
+                }
+            })
+            .catch((err: any) => {
+                console.log(err)
+            })
+        }
+    }
 
     useEffect(() => {
         const myLiffId = '1656441685-0MEzq1zq'
         initializeLiffOrDie(myLiffId)
     }, [])
 
-    const ipofile= getProfile()
-    // setProfile(prevstate => ({
-    //     ...prevstate,
-    //     []: !valu
-    // }))
+    const getAccessToken = () => {
+        if (!liff.isLoggedIn() && !liff.isInClient()) {
+            alert('To get an access token, you need to be logged in. Please tap the "login" button below and try again.');
+        } else {
+            setAccessToken(liff.getAccessToken())
+            toggleElement('accessToken', isOpen.accessToken)
+        }
+    }
+
+    function getProfile(): [number, TDictLiffProfile]{
+        const responce: TDictLiffProfile = {}
+        liff.getProfile().then(function(profile: any) {
+            const responce: TDictLiffProfile = {}
+            responce[0] = {
+                userId: profile.userId,
+                displayName: profile.displayName,
+                pictureUrl: profile.pictureUrl, 
+                statusMessage: profile.statusMessage
+            }
+            setProfile(responce[0])
+            toggleElement('profile', isOpen.profile)
+            return [0, responce]
+        }).catch(function(error: any) {
+            window.alert('Error getting profile: ' + error);
+            return [1, responce]
+        });
+        return [2, responce]
+    }
 
     function toggleElement(name: string, value: boolean){
         setIsOpen(prevState => ({
@@ -74,7 +116,7 @@ export default function Liff(){
             {/* <!-- PROFILE INFO --> */}
             <div id="profileInfo" className={`styles.textLeft ${isOpen.profile? '':styles.hidden}`}>
                 <h2>Profile</h2>
-                <a onClick={() => toggleElement('profile', isOpen.profile, setIsOpen)}>Close Profile</a>
+                <a onClick={() => toggleElement('profile', isOpen.profile)}>Close Profile</a>
                 <div id="profilePictureDiv">
                     {/* <Image src={profile?.pictureUrl? profile.pictureUrl:''} alt='profile Picture' /> */}
                 </div>
