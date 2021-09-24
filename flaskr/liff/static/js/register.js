@@ -1,11 +1,11 @@
 window.onload = function() {
-    const defaultLiffId = "1656415685-LMqGlmoG";   // change the default LIFF value if you are not using a node server
+    const defaultLiffId = id_favorite;   // change the default LIFF value if you are not using a node server
 
     // DO NOT CHANGE THIS
     let myLiffId = "";
 
     myLiffId = defaultLiffId;
-    initializeLiffOrDie(myLiffId);
+    initializeLiffOrDie(myLiffId)
 };
 
 /**
@@ -47,6 +47,8 @@ function initializeApp() {
 
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
+        location.replace('https://liff.line.me/1656441685-0MEzq1zq/register_favorite')
+        document.getElementById('liffLoginButton').disabled = true;
         liff.getProfile().then(function(profile) {
             var lineId = profile.userId;
             document.getElementById('userid').value = lineId;
@@ -66,8 +68,9 @@ function check_user(lineId){
     //リクエストに従って正しいヘッダー情報を送信してください
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function() { // 状態が変化すると関数が呼び出されます。
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+            // リクエストの終了。ここの処理を実行します。
         }
     }
     xhr.send(`lineid=${lineId}`);

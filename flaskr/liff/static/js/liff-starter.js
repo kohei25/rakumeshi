@@ -1,6 +1,6 @@
 window.onload = function() {
     const useNodeJS = false;   // if you are not using a node server, set this value to false
-    const defaultLiffId = "1656415685-jEEXwqOX";   // change the default LIFF value if you are not using a node server
+    const defaultLiffId = "1656441685-0MEzq1zq" ;   // change the default LIFF value if you are not using a node server
 
     // DO NOT CHANGE THIS
     let myLiffId = "";
@@ -22,9 +22,15 @@ window.onload = function() {
             });
     } else {
         myLiffId = defaultLiffId;
-        initializeLiffOrDie(myLiffId);
+        redirect();
     }
 };
+
+function redirect(){
+    liff.login({
+        redirectUri: "https://rakumeshi.loca.lt/liff/liff_index"
+    })
+}
 
 /**
 * Check if myLiffId is null. If null do not initiate liff.
@@ -50,6 +56,7 @@ function initializeLiff(myLiffId) {
         })
         .then(() => {
             // start to use LIFF's api
+            // location.replace("https://line.me/1656441685-0MEzq1zq/liff_index")
             initializeApp();
         })
         .catch((err) => {
@@ -68,6 +75,7 @@ function initializeApp() {
 
     // check if the user is logged in/out, and disable inappropriate button
     if (liff.isLoggedIn()) {
+        // redirectUri: "https://rakumeshi.loca.lt/liff/liff_index";
         document.getElementById('liffLoginButton').disabled = true;
     } else {
         document.getElementById('liffLogoutButton').disabled = true;

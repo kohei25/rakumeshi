@@ -1,3 +1,4 @@
 graft flaskr/static
 graft flaskr/templates
+prune app
 global-exclude *.pyc
