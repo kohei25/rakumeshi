@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import liff from '@line/liff'
-import {IProfile} from './type'
+import { TDictLiffProfile, TLiffProfile } from './type'
 
 export const initializeLiffOrDie = (myLiffId: string) => {
     if(!myLiffId){
@@ -73,21 +73,22 @@ const getAccessToken = () => {
     }
 }
 
-
-
-export function getProfile(){
+export function getProfile(): [number, TDictLiffProfile]{
+    const responce: TDictLiffProfile = {}
     liff.getProfile().then(function(profile: any) {
-        const setProfile: IProfile = {
+        const responce: TDictLiffProfile = {}
+        responce[0] = {
             userId: profile.userId,
             displayName: profile.displayName,
             pictureUrl: profile.pictureUrl, 
             statusMessage: profile.statusMessage
         }
-        return {flag: 0, profile: setProfile}
+        return [0, responce]
     }).catch(function(error: any) {
         window.alert('Error getting profile: ' + error);
-        return {flag: 1, profile: undefined}
+        return [1, responce]
     });
+    return [2, responce]
 }
 
 

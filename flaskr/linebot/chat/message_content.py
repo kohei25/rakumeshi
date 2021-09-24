@@ -34,7 +34,6 @@ def first_rep(line_bot_api, event):
             uri=url_starter
         )
     ]
-    print(f'buttons : {buttons}')
     line_bot_api.reply_message(
         event.reply_token,
         button_tpl(title, text, buttons)

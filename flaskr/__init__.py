@@ -31,10 +31,11 @@ def create_app(test_config=None):
     db.init_app(app)
     app.cli.add_command(init_db_command)
 
-    from flaskr import linebot, liff
+    from flaskr import linebot, liff, api
     
     app.register_blueprint(linebot.bp)
-    app.register_blueprint(liff.bp)
+    # app.register_blueprint(liff.bp)
+    app.register_blueprint(api.bp)
 
     @app.route('/favicon.ico')
     def favicon():
