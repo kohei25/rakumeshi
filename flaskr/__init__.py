@@ -1,9 +1,12 @@
+from concurrent.futures import thread
 import os
+import threading
+import time
 
-import click
-from flask import Flask, send_from_directory
+from flask import Flask, render_template, send_from_directory
 from flask.cli import with_appcontext
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import true
 
 db = SQLAlchemy()
 
@@ -11,7 +14,8 @@ def create_app(test_config=None):
 
     app = Flask(__name__, instance_relative_config=True)
 
-    db_url = os.environ.get('DATABASE_URL')
+    from flaskr.config import config
+    db_url = config.DATABASE_URL
 
     if db_url is None:
         db_path = os.path.join(app.instance_path, 'flaskr.sqlite')
@@ -29,29 +33,35 @@ def create_app(test_config=None):
         app.config.from_mapping(test_config)
 
     db.init_app(app)
-    app.cli.add_command(init_db_command)
+    # app.cli.add_command(init_db_command)
 
-    from flaskr import linebot, liff, api
+    from flaskr import linebot, api
     
     app.register_blueprint(linebot.bp)
-    # app.register_blueprint(liff.bp)
     app.register_blueprint(api.bp)
 
     @app.route('/favicon.ico')
     def favicon():
         return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+    @app.route('/admin/init-db')
+    def init_db():
+        init_db_command()
+        return render_template('admin.html', text='Initialized the database')
+    
+    @app.route('/admin/start-monitor-db')
+    def start_monitor_db():
+        from flaskr.linebot.line import Line
+        monitor = threading.Thread(target=Line.monitor_db)
+        monitor.start()
+        return render_template('admin.html', text='start monitoring db')
+
     return app
 
-def init_db():
+def init_db_command():
+    """Clear existing data and create new tables."""
     if db:
         db.drop_all()
     db.create_all()
-
-
-@click.command("init-db")
-@with_appcontext
-def init_db_command():
-    """Clear existing data and create new tables."""
-    init_db()
-    click.echo("Initialized the database.")
+    print('Initialized the database.')
+    # click.echo("Initialized the database.")
