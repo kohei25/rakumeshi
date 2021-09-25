@@ -189,3 +189,26 @@ export const facility = [
         label: '駐車場あり'
     },
 ]
+
+export const event_style = [
+    {
+        value: null,
+        label: '--選択してください--'
+    },
+    {
+        value: 0,
+        label: 'ランチ'
+    },
+    {
+        value: 1,
+        label: 'ディナー'
+    },
+    {
+        value: 2,
+        label: '飲み会'
+    },
+    {
+        value: 3,
+        label: 'ティータイム'
+    },
+]
