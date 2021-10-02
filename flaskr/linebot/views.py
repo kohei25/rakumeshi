@@ -16,16 +16,6 @@ bp = Blueprint('linebot', __name__)
 line = Line(bp)
 handler = line.handler
 
-@bp.route('/add_user', methods=['POST'])
-def add_user():
-    lineid = request.form['lineid']
-    user = User.query.filter_by(lineid=lineid).first()
-    message = '' # 非同期通信のエラー対策
-    if user is None:
-        db.session.add(User(lineid=lineid))
-        db.session.commit()
-    return message
-
 @bp.route('/callback', methods=['POST'])
 def callback():
     line.callback()

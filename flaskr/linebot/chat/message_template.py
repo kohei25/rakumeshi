@@ -47,24 +47,6 @@ def carousel_template_message(carousel_columns):
         template=CarouselTemplate(columns=carousel_columns)
     )
 
-def confirm_tpl():
-    return TemplateSendMessage(
-        alt_text='Confirm template',
-        template=ConfirmTemplate(
-            text='"ラク飯"のおすすめを表示する？',
-            actions=[
-                MessageAction(
-                    label='✅はい',
-                    text='"ラク飯"のおすすめを表示する'
-                ),
-                MessageAction(
-                    label='❌いいえ',
-                    text='最初から選択しなおす',
-                )
-            ]
-        )
-    )
-
 def loc_tpl(title, address, lat, lng):
     return LocationSendMessage(
         title=title,

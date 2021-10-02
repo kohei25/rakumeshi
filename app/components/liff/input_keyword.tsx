@@ -1,40 +1,29 @@
 import { useEffect, useReducer, useState} from "react"
-import { getProfile, initializeLiffOrDie } from "./init"
 import SelectMenus from "../UIkit/SelectMenus"
 import Button from "../UIkit/Button"
-import {checkboxesReducer, keywordReducer, TDictLiffProfile, TLiffProfile} from "./type"
+import {TLiffProfile} from "./type"
 import {alchool, budget, facility, seat, style} from './options'
 import { useRouter } from "next/router"
 import Spacer2 from "../layout/Spacer2"
 import CheckBoxes from "../UIkit/CheckBoxes"
 import Axios from 'axios'
 import liff from '@line/liff'
-
-
-const initialCheckboxes = {
-    style: [false, false, false, false],
-    seat: [false, false, false, false],
-    alchool: [false, false, false, false, false],
-    facility: [false, false],
-}
-
-const initialKeyword = {
-    min_budget: null,
-    max_budget: null,
-    keyword: null
-}
+import { initialCheckboxes, initialKeyword, initialProfileState } from "./initialState"
+import { checkboxesReducer, keywordReducer } from "./reducer"
+import { closeWindow} from './init'
 
 const input_keyword = () => {
     const router = useRouter()
     const inputKeywordURL = process.env.NEXT_PUBLIC_API_URL + '/input_keyword'
 
+    // FIXME: state management
     const [keyword, setKeyword] = useState('')
     const [profile, setProfile] = useState<TLiffProfile | undefined>(undefined)
 
     const [checkboxes, cdispatch] = useReducer(checkboxesReducer, initialCheckboxes)
     const [keywords, kdispatch] = useReducer(keywordReducer, initialKeyword)
     
-    const initializeLiffOrDie = (myLiffId: string) => {
+    const initializeLiffOrDie = (myLiffId: string | undefined) => {
         if(!myLiffId){
         } else {
             liff
@@ -53,17 +42,11 @@ const input_keyword = () => {
         }
     }
 
-    function getProfile(): [number, TDictLiffProfile]{
-        const responce: TDictLiffProfile = {}
+    function getProfile(): [number, TLiffProfile]{
+        const responce: TLiffProfile = initialProfileState
         liff.getProfile().then(function(profile: any) {
-            const responce: TDictLiffProfile = {}
-            responce[0] = {
-                userId: profile.userId,
-                displayName: profile.displayName,
-                pictureUrl: profile.pictureUrl, 
-                statusMessage: profile.statusMessage
-            }
-            setProfile(responce[0])
+            responce.userId = profile.userId
+            setProfile(responce)
             return [0, responce]
         }).catch(function(error: any) {
             window.alert('Error getting profile: ' + error);
@@ -73,7 +56,7 @@ const input_keyword = () => {
     }
 
     useEffect(() => {
-        const myLiffId = '1656441685-0MEzq1zq'
+        const myLiffId = process.env.NEXT_PUBLIC_LIFFID
         initializeLiffOrDie(myLiffId)
     }, [])
 
@@ -84,13 +67,16 @@ const input_keyword = () => {
 
     function handleSubmit(event: any){
         event.preventDefault()
+        const userId = profile?.userId
+        // TODO: form validation
         Axios.post(inputKeywordURL, {
+            userId: userId,
             checkboxes: checkboxes,
             keywords: keywords 
         }).then(function(res){
             if(res.status == 200){
                 console.log(res)
-                router.push('/liff/back')
+                closeWindow()
             }
         })
     }
