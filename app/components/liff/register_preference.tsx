@@ -9,6 +9,8 @@ import Spacer5 from "../layout/Spacer5"
 import Axios from 'axios'
 import liff from '@line/liff'
 import { initialPreferenceState, initialProfileState } from "./initialState"
+import { closeWindow} from './init'
+
 
 const register_preference = () => {
     const router = useRouter()
@@ -73,7 +75,7 @@ const register_preference = () => {
         }).then(function(res){
             if(res.status == 200){
                 console.log(res)
-                router.push('/liff/back')
+                closeWindow()
             }
         })
     }
@@ -82,16 +84,12 @@ const register_preference = () => {
         <>
             <form onSubmit={handleSubmit}>
                 <Spacer5 />
-                {errorMessage.sex}
                 <SelectMenus title={'性別'} label='sex' options={sex} dispatch={dispatch}/>
                 <Spacer5 />
-                {errorMessage.age}
                 <SelectMenus title={'年齢'} label='age' options={age} dispatch={dispatch}/>
                 <Spacer5 />
-                {errorMessage.genre}
                 <SelectMenus title={'好み'} label='genre' options={genre} dispatch={dispatch}/>
                 <Spacer5 />
-                {errorMessage.}
                 <SelectMenus title={'予算'} label='budget' options={budget_category} dispatch={dispatch}/>
                 <Spacer5 />
                 <div className='flex w-fll justify-center'>

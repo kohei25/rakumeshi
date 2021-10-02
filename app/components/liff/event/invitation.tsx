@@ -7,7 +7,7 @@ import Button from '../../UIkit/Button'
 import RadioButton from '../../UIkit/RadioButton'
 import { initialProfileState } from '../initialState'
 import { TLiffProfile } from '../type'
-
+import { closeWindow} from '../init'
 
 const options = [
     {
@@ -80,16 +80,15 @@ const invitation = () => {
     }
 
     function handleSubmit(){
-        const userId = profile?.userId 
-        //TODO:  form validation
+        const userId = profile?.userId
+        // TODO:  form validation
         Axios.post(invitationURL, {
             userId: userId,
             eventId: eventId,
             attend: attend
         }).then(function(res){
             if(res.status == 200){
-                console.log(res)
-                router.push('/liff/back')
+                closeWindow()
             }
         })
     }
@@ -103,7 +102,8 @@ const invitation = () => {
                 <div className='font-medium'>場所</div>
                 <div className='font-bold text-center'>{location}</div>
                 <Spacer5 />
-                <div className='font-medium text-center'>での{style}に参加しますか？</div>
+                {/* FIXME: style別に変更 */}
+                <div className='font-medium text-center'>でのランチに参加しますか？</div>
                 <RadioButton options={options} onSelected={checkSelected}/>
                 <div className='flex justify-center'>
                     <Button class='bg-green-500 text-white' text='提出する' value='' />

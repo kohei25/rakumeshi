@@ -11,11 +11,12 @@ import liff from '@line/liff'
 import Axios from 'axios'
 import SelectMenus from '../../UIkit/SelectMenus'
 import { event_style } from '../options'
+import { closeWindow} from '../init'
 
 const add = () => {
     // expected URL => https://xxxx/liff/event/add?group_id=xx&count=yy
     const router = useRouter()
-    const group_id = router.query['group_id']
+    const groupId = router.query['group_id']
     const count = router.query['count']
 
     // FIXME: state management
@@ -75,11 +76,11 @@ const add = () => {
             userId: userId,
             count: count,
             event: event,
-            group_id: group_id
+            groupId: groupId
         }).then(function(res){
             if(res.status == 200){
                 console.log(res)
-                router.push('/liff/back')
+                closeWindow()
             }
         })
     }

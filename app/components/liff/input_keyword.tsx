@@ -10,6 +10,7 @@ import Axios from 'axios'
 import liff from '@line/liff'
 import { initialCheckboxes, initialKeyword, initialProfileState } from "./initialState"
 import { checkboxesReducer, keywordReducer } from "./reducer"
+import { closeWindow} from './init'
 
 const input_keyword = () => {
     const router = useRouter()
@@ -75,7 +76,7 @@ const input_keyword = () => {
         }).then(function(res){
             if(res.status == 200){
                 console.log(res)
-                router.push('/liff/back')
+                closeWindow()
             }
         })
     }
